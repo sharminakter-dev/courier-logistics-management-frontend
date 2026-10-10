@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 import { Toaster } from "@/components/ui/sonner";
-import { GoogleProvider } from "./goole.provider";
+import { GoogleProvider } from "./google.provider";
 import { QueryProvider } from "./query.provider";
 
 export function Providers({ children }: { children: ReactNode }) {
