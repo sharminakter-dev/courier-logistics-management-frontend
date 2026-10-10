@@ -16,6 +16,8 @@ import { Field, FieldError, FieldGroup, FieldLabel } from "@/components/ui/field
 import { Input } from "@/components/ui/input";
 import { useLogin } from "@/hooks/use-login";
 import { type LoginValues, loginSchema } from "@/validation";
+import { OrDivider } from "../auth/or-divider";
+import { GoogleLoginButton } from "../auth/google-login-button";
 
 export function LoginForm({ redirectTo }: { redirectTo?: string }) {
 	const [showPassword, setShowPassword] = useState(false);
@@ -119,6 +121,10 @@ export function LoginForm({ redirectTo }: { redirectTo?: string }) {
 						</Button>
 					</FieldGroup>
 				</form>
+
+                <OrDivider label="or continue with" />
+                    <GoogleLoginButton redirectTo={redirectTo} />
+                <OrDivider label="or try a demo" />
 
 				<p className="text-center text-sm text-muted-foreground">
 					Don&apos;t have an account?{" "}

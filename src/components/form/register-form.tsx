@@ -15,6 +15,8 @@ import { FieldGroup } from "@/components/ui/field";
 import { useRegister } from "@/hooks/use-register";
 import { type RegisterValues, registerSchema } from "@/validation";
 import { FormTextField } from "./form-text-field";
+import { OrDivider } from "../auth/or-divider";
+import { GoogleLoginButton } from "../auth/google-login-button";
 
 export function RegisterForm() {
 	const register = useRegister();
@@ -149,6 +151,9 @@ export function RegisterForm() {
 						</Button>
 					</FieldGroup>
 				</form>
+
+                <OrDivider label="or sign up with" />
+                <GoogleLoginButton />
 
 				<p className="text-center text-sm text-muted-foreground">
 					Already have an account?{" "}
