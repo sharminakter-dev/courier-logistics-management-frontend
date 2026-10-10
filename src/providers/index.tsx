@@ -1,6 +1,15 @@
-import { ReactNode } from "react";
-import QueryProvider from "./query.provider";
+import type { ReactNode } from "react";
+import { Toaster } from "@/components/ui/sonner";
+import { GoogleProvider } from "./goole.provider";
+import { QueryProvider } from "./query.provider";
 
-export default function Providers({ children } : { children: ReactNode }){
-    return <QueryProvider> {children} </QueryProvider>
+export function Providers({ children }: { children: ReactNode }) {
+	return (
+		<GoogleProvider>
+			<QueryProvider>
+				{children}
+				<Toaster richColors position="top-right" />
+			</QueryProvider>
+		</GoogleProvider>
+	);
 }
