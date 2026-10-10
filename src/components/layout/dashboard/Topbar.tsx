@@ -5,8 +5,8 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import type { Me } from "@/types/user";
-import { Brand } from "../Brand";
 import { SidebarContent } from "./SidebarContent";
+import { Brand } from "../public/Brand";
 
 export function Topbar({ user }: { user: Me }) {
 	const [open, setOpen] = useState(false);

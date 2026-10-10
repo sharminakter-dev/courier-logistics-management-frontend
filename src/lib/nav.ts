@@ -23,6 +23,19 @@ export interface NavItem {
 	exact?: boolean;
 }
 
+const ADMIN_NAV: NavItem[] = [
+	{ label: "Overview", href: "/admin", icon: LayoutDashboard, exact: true },
+	{ label: "Shipments", href: "/admin/shipments", icon: Package },
+	{ label: "Couriers", href: "/admin/couriers", icon: Truck },
+	{ label: "Hubs & Zones", href: "/admin/hubs", icon: Building2 },
+	{ label: "Transfers", href: "/admin/transfers", icon: ArrowLeftRight },
+	{ label: "Pricing", href: "/admin/pricing", icon: BadgeDollarSign },
+	{ label: "Reports", href: "/admin/reports", icon: ChartColumn },
+	{ label: "Notifications", href: "/admin/notifications", icon: Bell },
+	{ label: "Profile", href: "/admin/profile", icon: UserCircle },
+];
+
+	
 export const NAV_BY_ROLE: Record<Role, NavItem[]> = {
 	CUSTOMER: [
 		{ label: "My Shipments", href: "/dashboard", icon: Package, exact: true },
@@ -37,15 +50,6 @@ export const NAV_BY_ROLE: Record<Role, NavItem[]> = {
 		{ label: "Notifications", href: "/courier/notifications", icon: Bell },
 		{ label: "Profile", href: "/courier/profile", icon: UserCircle },
 	],
-	ADMIN: [
-		{ label: "Overview", href: "/admin", icon: LayoutDashboard, exact: true },
-		{ label: "Shipments", href: "/admin/shipments", icon: Package },
-		{ label: "Couriers", href: "/admin/couriers", icon: Truck },
-		{ label: "Hubs & Zones", href: "/admin/hubs", icon: Building2 },
-		{ label: "Transfers", href: "/admin/transfers", icon: ArrowLeftRight },
-		{ label: "Pricing", href: "/admin/pricing", icon: BadgeDollarSign },
-		{ label: "Reports", href: "/admin/reports", icon: ChartColumn },
-		{ label: "Notifications", href: "/admin/notifications", icon: Bell },
-		{ label: "Profile", href: "/admin/profile", icon: UserCircle },
-	],
+	SUPER_ADMIN: ADMIN_NAV,
+	ADMIN: ADMIN_NAV,
 };

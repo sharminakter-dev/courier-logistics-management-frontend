@@ -1,10 +1,11 @@
-import { LoaderCircle, ShieldCheck, Truck, User } from "lucide-react";
+import { Crown, LoaderCircle, ShieldCheck, Truck, User } from "lucide-react";
 import type { ComponentType } from "react";
 import { Button } from "@/components/ui/button";
 import { DEMO_ACCOUNTS, type DemoAccount } from "@/lib/constants";
 import type { Role } from "@/types/enums";
 
 const ICONS: Record<Role, ComponentType<{ className?: string }>> = {
+	SUPER_ADMIN: Crown,
 	ADMIN: ShieldCheck,
 	CUSTOMER: User,
 	COURIER: Truck,
@@ -21,7 +22,7 @@ export function DemoLogin({ onSelect, pendingRole, disabled }: DemoLoginProps) {
 		<section aria-label="Quick demo login" className="space-y-3">
 			<p className="text-center text-sm font-medium">Quick Demo Login</p>
 
-			<div className="grid gap-3 sm:grid-cols-3">
+			<div className="grid grid-cols-2 gap-3">
 				{DEMO_ACCOUNTS.map((account) => {
 					const Icon = ICONS[account.role];
 					const isPending = pendingRole === account.role;

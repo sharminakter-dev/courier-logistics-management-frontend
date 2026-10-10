@@ -26,11 +26,10 @@ const decodeToken = (token: string): { role: Role } | null => {
 	}
 };
 
-const PROTECTED: { prefix: string; role: Role }[] = [
-    // { prefix: "/superAdmin", role: "SUPERADMIN" },
-	{ prefix: "/admin", role: "ADMIN" },
-	{ prefix: "/courier", role: "COURIER" },
-	{ prefix: "/dashboard", role: "CUSTOMER" },
+const PROTECTED: { prefix: string; roles: Role[] }[] = [
+	{ prefix: "/admin", roles: ["SUPER_ADMIN", "ADMIN"] },
+	{ prefix: "/courier", roles: ["COURIER"] },
+	{ prefix: "/dashboard", roles: ["CUSTOMER"] },
 ];
 
 export function proxy(request: NextRequest) {
@@ -50,9 +49,9 @@ export function proxy(request: NextRequest) {
 		}
 
 		// logged in, but opening another role's area
-		if (session.role !== rule.role) {
-			return NextResponse.redirect(new URL(ROLE_HOME[session.role], request.url));
-		}
+		if (!rule.roles.includes(session.role)) {
+            return NextResponse.redirect(new URL(ROLE_HOME[session.role], request.url));
+        }
 	}
 
 	// already logged in -> no need to see login/register

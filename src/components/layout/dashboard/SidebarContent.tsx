@@ -10,7 +10,8 @@ import { formatStatus } from "@/lib/format";
 import { NAV_BY_ROLE } from "@/lib/nav";
 import { cn } from "@/lib/utils";
 import type { Me } from "@/types/user";
-import { Brand } from "../Brand";
+import { Brand } from "../public/Brand";
+
 
 interface SidebarContentProps {
 	user: Me;

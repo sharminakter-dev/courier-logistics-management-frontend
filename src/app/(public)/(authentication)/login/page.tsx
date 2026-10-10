@@ -1,17 +1,21 @@
+
 import type { Metadata } from "next";
-import { LoginForm } from "@/components/form/login-form";
+import { Suspense } from "react";
+import LoginContent from "./login-content";
 
 export const metadata: Metadata = {
-	title: "Login",
-	description: "Log in to create, track and manage your shipments.",
+  title: "Login",
+  description: "Log in to create, track and manage your shipments.",
 };
 
-export default async function LoginPage({
-	searchParams,
+export default function LoginPage({
+  searchParams,
 }: {
-	searchParams: Promise<{ redirect?: string | string[] }>;
+  searchParams: Promise<{ redirect?: string | string[] }>;
 }) {
-	const { redirect } = await searchParams;
-
-	return <LoginForm redirectTo={typeof redirect === "string" ? redirect : undefined} />;
+  return (
+    <Suspense fallback={<div>Loading login...</div>}>
+      <LoginContent searchParams={searchParams} />
+    </Suspense>
+  );
 }
