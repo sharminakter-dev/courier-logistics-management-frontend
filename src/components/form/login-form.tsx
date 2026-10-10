@@ -4,7 +4,6 @@ import { useForm } from "@tanstack/react-form";
 import { Eye, EyeOff, LoaderCircle } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
-import { DemoLogin } from "@/components/auth/demo-login";
 import { Button } from "@/components/ui/button";
 import {
 	Card,
@@ -16,13 +15,10 @@ import {
 import { Field, FieldError, FieldGroup, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { useLogin } from "@/hooks/use-login";
-import type { DemoAccount } from "@/lib/constants";
-import type { Role } from "@/types/enums";
 import { type LoginValues, loginSchema } from "@/validation";
 
 export function LoginForm({ redirectTo }: { redirectTo?: string }) {
 	const [showPassword, setShowPassword] = useState(false);
-	const [pendingDemo, setPendingDemo] = useState<Role | null>(null);
 	const login = useLogin(redirectTo);
 
 	const busy = login.isPending || login.isSuccess;
@@ -34,14 +30,6 @@ export function LoginForm({ redirectTo }: { redirectTo?: string }) {
 			login.mutate(value);
 		},
 	});
-
-	const handleDemoLogin = (account: DemoAccount) => {
-		setPendingDemo(account.role);
-		login.mutate(
-			{ email: account.email, password: account.password },
-			{ onSettled: () => setPendingDemo(null) },
-		);
-	};
 
 	return (
 		<Card className="w-full max-w-md">
@@ -126,25 +114,11 @@ export function LoginForm({ redirectTo }: { redirectTo?: string }) {
 						</form.Field>
 
 						<Button type="submit" className="w-full" disabled={busy}>
-							{busy && pendingDemo === null && (
-								<LoaderCircle className="animate-spin" />
-							)}
+							{busy && <LoaderCircle className="animate-spin" />}
 							Login
 						</Button>
 					</FieldGroup>
 				</form>
-
-				<div className="flex items-center gap-3 text-xs text-muted-foreground uppercase">
-					<span className="h-px flex-1 bg-border" />
-					or
-					<span className="h-px flex-1 bg-border" />
-				</div>
-
-				<DemoLogin
-					onSelect={handleDemoLogin}
-					pendingRole={pendingDemo}
-					disabled={busy}
-				/>
 
 				<p className="text-center text-sm text-muted-foreground">
 					Don&apos;t have an account?{" "}
