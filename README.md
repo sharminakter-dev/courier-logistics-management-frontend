@@ -1,7 +1,7 @@
 # Courier & Logistics Management: Frontend
 
 
-**Live API:** ` https://courier-logistics-management-frontend-id8hgdiiw.vercel.app/ ` | **Backend:** ` https://courier-logistics-management-backen-six.vercel.app/ `
+**Live API:** https://courier-logistics-management-frontend-id8hgdiiw.vercel.app/  | **Backend:**  https://courier-logistics-management-backen-six.vercel.app/ 
  
 Next.js frontend for the Courier & Logistics Management API. Three roles share one app:
 
